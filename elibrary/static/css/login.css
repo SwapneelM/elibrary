@@ -1,0 +1,24 @@
+
+h2
+ {
+  color: #6D7781;
+
+  font-size: 10px;
+  font-weight: bold;
+  font-size: 3.6em;
+  text-align: center;
+}
+
+.userform
+{
+  border-radius: 6px;
+  width: 35%;
+  padding: 20px;
+  background-color: #59C9A5;
+}
+
+input
+{
+  width: 99%;
+}
+

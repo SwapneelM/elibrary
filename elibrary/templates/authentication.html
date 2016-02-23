@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+        <div class="flat-form">
+            <ul class="tabs">
+                <li>
+                    <a href="/login/">Login</a>
+                </li>
+                <li>
+                    <a href="/register/">Register</a>
+                </li>
+            </ul>
+            {% block this %}
+            {% endblock %}
+            </div>
+            </div>
+{% endblock %}

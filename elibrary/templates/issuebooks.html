@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+		{% if user.is_superuser %}
+			<h3>{{book.bookName}}</h3>
+			<h3>Copies remaining : {{book.copies}}</h3>
+			<br/>
+			<h4>Requested By:</h4>
+			<table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th> SAP ID </th>
+                    <th> Approve Request </th>
+                    <th> Decline Request </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Sap in RequestSapList %}
+                	{% if Sap%}
+                    	<tr>
+                        <td>{{ Sap }}</td>
+                        <td><a href="issueto/{{Sap}}">Approve</a></td>
+                        <td><a href="decline/{{Sap}}">Decline</a></td>
+                    	</tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <br/>
+			<h4>Issued To:</h4>
+			<table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>SAP ID</th>
+                    <th>Book returned?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Sap in IssueSapList %}
+                	{% if Sap%}
+                    	<tr>
+                        <td>{{ Sap }}</td>
+                        <td><a href="returnedby/{{Sap}}">Returned</a></td>
+                    	</tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+		{% else %}
+			<h3>You don't have permission.Admin {{bookID}}</h3>
+		{% endif %}
+	{% else %}
+		<h3>Please login.</h3>			
+	{% endif %}
+{% endblock %}

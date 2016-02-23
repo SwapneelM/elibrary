@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if not user.is_authenticated %}
+    <div class = 'userRegform col-md-offset-4 col-xs-offset-4'>
+        <form method="post" class = 'post-form'>
+        {% csrf_token %}
+
+        <h3>Register</h3>
+        {{user_form.as_p}}
+        {{users_form.as_p}}
+        <button type="submit" class="form-control loginbtn btn btn-danger">Register</button>
+        </form>
+    </div>    
+    {% else %}
+    	<h3>You're already a registered user.</h3>    
+    {% endif %}
+{% endblock %}

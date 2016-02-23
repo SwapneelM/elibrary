@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+		{% if not user.is_superuser %}
+			<h3>{{book}} requested</h3>
+		{% else %}
+			<h3>You don't have permission, Admin</h3>
+		{% endif %}
+	{% else %}
+		<h3>Please login.</h3>			
+	{% endif %}
+{% endblock %}

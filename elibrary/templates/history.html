@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Welcome, {{user.username}}</h3>
+<table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>History</th>    
+                </tr>
+            </thead>
+            <tbody>
+                {% for hist in history %}
+                    <tr>
+                    	{% if hist %}
+                        <td>{{ hist }}</td>
+                  		{% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

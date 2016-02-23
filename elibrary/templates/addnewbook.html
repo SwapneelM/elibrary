@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_superuser %}
+    <div class = 'userRegform col-md-offset-4'>
+        <form method="post" class = 'post-form'>{% csrf_token %}
+        <link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
+        <h2>NewBook</h2>
+         {{form.as_p}}
+            <button type="submit" class="form-control loginbtn btn btn-danger">Add Book</button>
+        </form>
+    </div>    
+    {% else %}
+    	<h3>You don't have permission.</h3>    
+    {% endif %}
+{% endblock %}

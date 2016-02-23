@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+    <div>
+        <h3>
+            List of books:
+        </h3>
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Area</th>
+                    <th>Subject</th>
+                    <th>Book Name</th>
+                    <th>Author</th>
+                    <th>Number of copies</th>
+                    {% if user.is_superuser %}
+                        <th>Number of Requests</th>
+                        <th>Issue/Return</th>
+                        <th> Add copies </th>
+                        <th> Remove copies </th>
+                        <th> Delete</th>
+                        <th> Edit</th>
+                    {% else %}
+                        <th> Request </th>
+                    {% endif %}        
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    {% if book.copies > 0 %}
+                        <tr>
+                        <td>{{ book.libID }}</td>
+                        <td>{{ book.area }}</td>
+                        <td>{{ book.subject }}</td>
+                        <td>{{ book.bookName }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.copies }}</td>
+                        {% if user.is_superuser %}
+                            <td>{{ book.requests }}</td>
+                            <td><a href="/bookissue/{{book.id}}">Issue/Return</a></td>
+                            <td><a href="/addbook/{{book.id}}">Add Copy</a></td>
+                            <td><a href="/removeCopy/{{book.id}}">Remove Copy</a></td>
+                            <td><a href="/removebook/{{book.id}}">Remove Book</a></td>
+                            <td><a href="/editbook/{{book.id}}">Edit Book</a></td>
+                        {% else %}
+                            <td><a href="/bookrequest/{{book.id}}">Request</a></td>    
+                        {% endif %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <h4>Want to search for a book?<a href="/search/">Click here.</a></h4>
+        {% if user.is_superuser %}
+        <h4>Want to add a new book?<a href="/addnewbook/">Click here.</a></h4>
+        {% endif %}
+    </div>    
+    {% else %}
+    	<h3>You must login to continue.</h3>    
+    {% endif %}
+{% endblock %}

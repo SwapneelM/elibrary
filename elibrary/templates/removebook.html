@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_superuser %}
+	<div class="userRegform col-md-offset-5">
+    <form method="post" class="post-form">
+        {% csrf_token %}
+        <label for="bookName">Book Name:</label>
+        <input type="text" name ="bookName" id = 'bookName'/>
+        <br/>
+        <label for="author">Author:</label>
+        <input type="text" name ="author" id = 'author'/>
+        <br/>
+        &nbsp
+        <button type="submit" class="form-control loginbtn btn btn-danger">Remove and add new Book</button>
+    </form>
+    </div>
+    {% else %}
+    	<h3>No permission.</h3>    
+    {% endif %}
+
+{% endblock %}

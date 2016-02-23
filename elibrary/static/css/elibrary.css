@@ -1,0 +1,27 @@
+
+
+.foot
+{
+	width:100%;
+	background-color: #006994;
+	height: 2em;
+}
+
+#footer
+{
+	padding: 0.5em;
+}
+.navbar-custom
+{
+	background-color: #006994;
+}
+
+.navbar-custom a
+{
+	color: #000000;
+}
+
+#footer a
+{
+	color: #ffffff;
+}
